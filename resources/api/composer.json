@@ -1,0 +1,12 @@
+{
+    "name": "eerazozamudio/api",
+    "authors": [{
+        "name": "Eddy Erazo Zamudio",
+        "email": "eerazozamudio@gmail.com"
+    }],
+
+
+    "require": {
+        "eoghanobrien/php-simple-mail": "^1.7"
+    }
+}
