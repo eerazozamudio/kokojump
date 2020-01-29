@@ -185,7 +185,7 @@ Ext.define('kokojump.view.pdv.Main', {
                                 itemId: 'btnSelectApoderado',
                                 text: 'Apoderado',
                                 scale: 'small',
-                                hidden : true,
+                                hidden : false,
                                 handler: 'accionSelectApoderado'
                             },
                             {

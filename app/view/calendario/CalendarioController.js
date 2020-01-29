@@ -104,11 +104,20 @@ Ext.define('kokojump.view.calendario.CalendarioController', {
         
     },
     onSelectDia: function (obj, date, eOpts) {
+    try {
         me.lookupReference('dgvevento').getStore().load({
             params: {
                 fecha: Ext.Date.format(obj.getValue(), 'Y-m-d')
             }
         });
+    } catch (error) {
+        Ext.ComponentQuery.query('#dgvevento')[0].getStore().load({
+            params: {
+                fecha: Ext.Date.format(obj.getValue(), 'Y-m-d')
+            }
+        });
+    }
+        
     },
     onClickCliente: function (b) {
         win = Ext.create('kokojump.view.pdv.PopupApoderado', {});

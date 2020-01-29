@@ -139,13 +139,12 @@ Ext.define('kokojump.view.pdv.PopupApoderadoController', {
             _form.submit({
                 waitMsg: 'Guardando información...',
                 success: function (form, action) {
-
                     var rsp = kokojump.util.Json.decodeJSON(action.response.responseText);
-
-                    Ext.ComponentQuery.query('#txtNombrePersona')[0].setText('Apoderado: '+ nom + ' ' + ape);
+                    Ext.ComponentQuery.query('#txtNombrePersona')[0].setValue('Apoderado: '+ nom + ' ' + ape);
                     Ext.ComponentQuery.query('#txtCodigoPersona')[0].setValue(rsp.error);
-                    var view =  me.getView();
-                    view.close();
+                    Ext.ComponentQuery.query('#wPdvPopupApoderado')[0].close();
+                    //var view =  me.getView();
+                    //view.close();
                 },
                 failure: function () {
                     Ext.Msg.alert("Aviso", action.result.msg);

@@ -71,6 +71,7 @@ Ext.define('kokojump.view.calendario.Calendario',{
                     {
                         xtype:'grid',
                         reference:'dgvevento',
+                        itemId : 'dgvevento',
                         store : st,
                         flex: 2.5,
                         columnLines: true,
@@ -112,7 +113,7 @@ Ext.define('kokojump.view.calendario.Calendario',{
                                     tooltip : 'Imprimir contrato del evento'
                                 }
                             },
-                            {
+                            /*{
                                 xtype: 'widgetcolumn',
                                 flex: 0.5,
                                 widget: {
@@ -122,7 +123,7 @@ Ext.define('kokojump.view.calendario.Calendario',{
                                     handler: 'onClickEMail',
                                     tooltip : 'Enviar el contrato al cliente'
                                 }
-                            }
+                            }*/
                         ],
                         emptyText :'NO HAY EVENTOS REGISTRADOS',
                         listeners : {
@@ -181,6 +182,7 @@ Ext.define('kokojump.view.calendario.Calendario',{
                             {
                                 xtype:'textfield',fieldLabel:'Cliente',
                                 name:'cliente',
+                                itemId : 'txtNombrePersona',
                                 flex:2,allowBlank:false},
                             {xtype:'button',text:'Buscar',flex:0.5,handler:'onClickCliente'}
                         ]

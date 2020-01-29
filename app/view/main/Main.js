@@ -10,11 +10,11 @@ Ext.define('kokojump.view.main.Main', {
     items:[
         {
         region: 'west',
-        title: '.: Cale Diversiones :.',
+        title: '.: KokoJump :.',
         iconCls :'fa fa-cogs',
         titleCollapse: false,
         width: 210,
-        collapsed :true,
+        collapsed :false,
         collapsible :true,
         layout: {
           type:'vbox',

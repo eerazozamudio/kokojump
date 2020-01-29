@@ -2,9 +2,10 @@ Ext.define('kokojump.view.pdv.PopupApoderado', {
     extend: 'Ext.window.Window',
     alias: 'wPdvPopupApoderado',
     title: 'Registra apoderado',
+    itemId : 'wPdvPopupApoderado',
     modal: true,
     width: 650,
-    height: 250,
+    height: 300,
     iconCls: 'fa fa-money',
     layout: {
         type: 'anchor'
@@ -32,13 +33,13 @@ Ext.define('kokojump.view.pdv.PopupApoderado', {
             {
                 text: 'Guardar y seleccionar',
                 reference: 'btnGuardarSeleccionarApoderado',
-                //hidden : true,
+                hidden : true,
                 glyph: kokojump.util.Glyphs.getGlyph('diskete'),
                 handler: 'accionGuardarSeleccionarApoderado'
             },{
                 text: 'Seleccionar',
                 reference: 'btnSeleccionarApoderado',
-                //hidden : true,
+                hidden : true,
                 glyph: kokojump.util.Glyphs.getGlyph('diskete'),
                 handler: 'accionSeleccionarApoderado'
             }
@@ -52,6 +53,11 @@ Ext.define('kokojump.view.pdv.PopupApoderado', {
     getItems: function (_storeTempHijo) {
 
         var _obj = [
+        {
+            xtype : 'container',
+            html : '<p style="color:#0f5e8a">Ingresar el número de documento de identidad (DNI) y presionar enter , si existe en la base de datos de clientes <strong>Aseleccionar</strong> si no existe registrar sus datos.',
+            height :70
+        },
           {
             xtype: 'form',
             itemId: 'frmGuardarApoderado',

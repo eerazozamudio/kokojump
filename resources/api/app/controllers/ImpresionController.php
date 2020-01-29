@@ -184,20 +184,47 @@ class ImpresionController extends Controller
       $total = 0;
       $totanulado = 0;
       foreach ($jsonData->data as $item) {
-          $objPHPExcel->getActiveSheet()->setCellValue('A'.$index, $i++);
-          $objPHPExcel->getActiveSheet()->setCellValue('B'.$index, $item->milocal);
-          $objPHPExcel->getActiveSheet()->setCellValue('C'.$index, $item->fechaventa);
-          $objPHPExcel->getActiveSheet()->setCellValue('D'.$index, utf8_decode( $item->cliente));
-          $objPHPExcel->getActiveSheet()->setCellValue('E'.$index, $item->totalventa);
-          $objPHPExcel->getActiveSheet()->setCellValue('F'.$index, $item->estadopagostr);
-          $index++;
-          if($item->estadopagostr!='ANULADO')
-              $total = $total + $item->totalventa;
-           if(trim($item->estadopagostr)=='ANULADO')
-              $totanulado = $totanulado + $item->totalventa;
+        if($item->formapago=='EFECTIVO'){
+            $objPHPExcel->getActiveSheet()->setCellValue('A'.$index, $i++);
+            $objPHPExcel->getActiveSheet()->setCellValue('B'.$index, $item->milocal);
+            $objPHPExcel->getActiveSheet()->setCellValue('C'.$index, $item->fechaventa);
+            $objPHPExcel->getActiveSheet()->setCellValue('D'.$index, utf8_decode( $item->cliente));
+            $objPHPExcel->getActiveSheet()->setCellValue('E'.$index, $item->totalventa);
+            $objPHPExcel->getActiveSheet()->setCellValue('F'.$index, $item->estadopagostr);
+            $index++;
+            if($item->estadopagostr!='ANULADO')
+                $total = $total + $item->totalventa;
+            if(trim($item->estadopagostr)=='ANULADO')
+                $totanulado = $totanulado + $item->totalventa;
+        }
       }
-      $objPHPExcel->getActiveSheet()->setCellValue('E'.$index, 'Total');
-      $objPHPExcel->getActiveSheet()->setCellValue('F'.$index, ($total));
+      $objPHPExcel->getActiveSheet()->setCellValue('D'.$index, 'Total');
+      $objPHPExcel->getActiveSheet()->setCellValue('E'.$index, ($total));
+
+      //Tarjetas
+      $objPHPExcel->setActiveSheetIndex(1);
+      $index = 4;
+      $i     = 1;
+      $total = 0;
+      $totanulado = 0;
+      foreach ($jsonData->data as $item) {
+        if($item->formapago!='EFECTIVO'){
+            $objPHPExcel->getActiveSheet()->setCellValue('A'.$index, $i++);
+            $objPHPExcel->getActiveSheet()->setCellValue('B'.$index, $item->milocal);
+            $objPHPExcel->getActiveSheet()->setCellValue('C'.$index, $item->fechaventa);
+            $objPHPExcel->getActiveSheet()->setCellValue('D'.$index, utf8_decode( $item->cliente));
+            $objPHPExcel->getActiveSheet()->setCellValue('E'.$index, $item->totalventa);
+            $objPHPExcel->getActiveSheet()->setCellValue('F'.$index, $item->estadopagostr);
+            $index++;
+            if($item->estadopagostr!='ANULADO')
+                $total = $total + $item->totalventa;
+            if(trim($item->estadopagostr)=='ANULADO')
+                $totanulado = $totanulado + $item->totalventa;
+        }
+      }
+      $objPHPExcel->getActiveSheet()->setCellValue('D'.$index, 'Total');
+      $objPHPExcel->getActiveSheet()->setCellValue('E'.$index, ($total));
+
 
       // file name to output
       $fname = date("Ymd_his") . ".xlsx";
@@ -385,7 +412,7 @@ class ImpresionController extends Controller
         $dataEmpresa =  json_decode(Config::mostrar())->data[0];
         $dataPagos   =  json_decode(Evento::pagos(array($id)));
         $evento      =  json_decode(Evento::buscar(array($id)))->data[0];
-
+        
         //print_r($evento);die();
         // ========== FPDF ==========  //
         $pdf = new fpdf('P','mm','A4');
@@ -449,15 +476,17 @@ class ImpresionController extends Controller
         $pdf->setXY(30,$fila );
         $pdf->MultiCell(60,5,'CLIENTE',0,'C');
         $pdf->setXY(120,$fila );
-        $pdf->MultiCell(60,5,'CALE DIVERSIONES',0,'C');
+        $pdf->MultiCell(60,5,'KOKOJUMP',0,'C');
         $pdf->Output('temp/contratoevento.pdf','F');
+        //print_r($dataEmpresa);
+        //print_r($evento);die();
         $mailer = SimpleMail::make()
         ->setTo($evento->correo, $evento->cliente) // para 
         ->setFrom($dataEmpresa->correo, $dataEmpresa->nombreimpresion) // de
-        ->setSubject('Contrato de Servicio Cale Diversiones')
+        ->setSubject('Contrato de Servicio KOKOJUMP')
         ->setMessage('Le adjunto información de requerimiento.')
         ->setWrap(100)
-        ->addAttachment('temp/contratoevento.pdf')
+        //->addAttachment('temp/contratoevento'.$evento->cliente.'.pdf')
         ->send();
         unlink('temp/contratoevento.pdf');
         $jsonData = array();

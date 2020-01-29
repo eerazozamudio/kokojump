@@ -40,7 +40,8 @@ Ext.define('kokojump.view.main.Login',{
         },
         { 
             xtype:'textfield',
-            fieldLabel :'<b>USUARIO</b>',//value:'root', 
+            fieldLabel :'<b>USUARIO</b>',
+            //value:'root', 
             reference:'usuario', 
             name :'usuario',
             ancho:'100%',
@@ -49,7 +50,9 @@ Ext.define('kokojump.view.main.Login',{
             fieldStyle: 'text-align: left;font-size:25px;font-weight:bold; ',
             
         },
-        { xtype:'textfield',fieldLabel: '<b>PASSWORD</b>' ,/*value:'64y4.634##',*/ reference :'clave',name :'clave',anchpr:'100%', inputType: 'password',allowBlank:false ,labelAlign:'right',
+        { xtype:'textfield',fieldLabel: '<b>PASSWORD</b>' ,
+        //value:'64y4.634##', 
+        reference :'clave',name :'clave',anchpr:'100%', inputType: 'password',allowBlank:false ,labelAlign:'right',
         fieldStyle: 'text-align: left;font-size:25px;font-weight:bold; ',},
         {
             xtype: 'combobox',

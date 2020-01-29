@@ -31,7 +31,7 @@ Ext.define('kokojump.view.admin.ListadoPagos', {
         },
         {
             xtype: 'button',
-            text: 'Reporte PDF',
+            text: 'Reporte Todos PDF',
             handler: 'onClickImprimirPDFVentasDiarias'
         },
         {
