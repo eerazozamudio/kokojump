@@ -536,7 +536,10 @@ class ImpresionController extends Controller
         $pdf->Cell(0,5,utf8_decode("MONTO TOTAL S/. : ". number_format( $evento->total,2,'.',' ')),0,1,'L');
         $pdf->SetFont($font,'B',12);
         $pdf->Ln();
-        $pdf->Cell(0,5,utf8_decode("ADELANTOS   S/. : ". number_format( $pagos,2,'.',' ')),0,1,'L');
+        $pdf->Cell(0,5,utf8_decode("ADELANTOS     S/. : ". number_format( $pagos,2,'.',' ')),0,1,'L');
+        $pdf->Ln();
+        $pdf->Cell(0,5,utf8_decode("SALDO               S/. : ". number_format( $evento->total-$pagos,2,'.',' ')),0,1,'L');
+        
         $pdf->Ln(5);
         $pdf->SetFont($font,'B',$tam);
         $pdf->Cell(40,$in,utf8_decode("CONDICIONES DEL SERVICIO"),0,1,'L');
@@ -565,7 +568,7 @@ class ImpresionController extends Controller
         $pdf->setXY(30,$fila );
         $pdf->MultiCell(60,5,'CLIENTE',0,'C');
         $pdf->setXY(120,$fila );
-        $pdf->MultiCell(60,5,'CALE DIVERSIONES',0,'C');
+        $pdf->MultiCell(60,5,'KOKOJUMP',0,'C');
         $pdf->Output();
         }
 

@@ -30,6 +30,7 @@ Ext.define('kokojump.view.pdv.AccionesPago', {
         }
     },
     accionGuardarPagoMesa : function(btn){
+        
         me = this;
         var _form =  Ext.ComponentQuery.query('#frmGuardarPago')[0];
         var _btn = btn.itemId.toString();
@@ -41,7 +42,11 @@ Ext.define('kokojump.view.pdv.AccionesPago', {
         //   Ext.Msg.alert("GSystem Peru","Error, ingrese el numero de recibo del POS");
         //   return false;
         //}
+
         if (_form.isValid()) {
+
+            papa =Ext.ComponentQuery.query('#txtNombreApoderado')[0].getValue();
+            Ext.ComponentQuery.query('#idper')[0].setValue(papa);
             _form.submit({
                 waitMsg: 'Guardando informacion...',
                 success: function (form, action) {

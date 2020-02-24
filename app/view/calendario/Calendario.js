@@ -137,6 +137,7 @@ Ext.define('kokojump.view.calendario.Calendario',{
                 frame :false,
                 url : kokojump.util.Rutas.eventoGuardar,
                 reference : 'frmevento',
+                itemId : 'frmevento',
                 padding : 5,
                 flex : 1.8,
                 title : 'Detalle del Evento',

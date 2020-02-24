@@ -45,7 +45,7 @@ class VentaController extends Controller
                 $numerorecibo,
                 $jsondetalle ,
                 $numeromesa,$fechaventa);
-               // print_r($data);die();
+         // print_r($data);die();
               $jsonData = Venta::guardar($data);
               $response->setContentType('application/json', 'UTF-8');
               $response->setContent(json_encode($jsonData[0], JSON_NUMERIC_CHECK));

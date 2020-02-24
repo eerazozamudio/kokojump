@@ -33,6 +33,8 @@ Ext.define('kokojump.view.calendario.CalendarioController', {
                         Ext.ComponentQuery.query('[name=id]')[0].setValue(action.result.error);
                         dg = me.lookupReference('dgvevento');
                         dg.getStore().reload();
+                        f.reset();
+                        Ext.Msg.alert("Evento","Guardado");
                     }
                 },
                 failure: function () {

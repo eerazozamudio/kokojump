@@ -56,6 +56,7 @@ Ext.define('kokojump.view.pdv.Pago', {
                     {
                         xtype:'hiddenfield',
                         name : 'idper',
+                        itemId : 'idper',
                         value : _persona
                     },
                     {

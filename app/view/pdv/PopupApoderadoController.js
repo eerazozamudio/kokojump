@@ -58,12 +58,15 @@ Ext.define('kokojump.view.pdv.PopupApoderadoController', {
                         Ext.ComponentQuery.query('#telefonoapoderado')[0].setValue('');
                         Ext.ComponentQuery.query('#correoapoderado')[0].setValue('');
 
-                        if(resultado.data){
-                            Ext.ComponentQuery.query('#idapoderado')[0].setValue(resultado.data[0].idapo);
-                            Ext.ComponentQuery.query('#nombresapoderado')[0].setValue(resultado.data[0].nombres);
+                        if(resultado.data){ //anita 
+                            Ext.ComponentQuery.query('[name=cliente]')[0].setValue(resultado.data[0].nombres);
+                            Ext.ComponentQuery.query('[name=idclie]')[0].setValue(resultado.data[0].idapo);
                             Ext.ComponentQuery.query('#apellidosapoderado')[0].setValue(resultado.data[0].apellidos);
                             Ext.ComponentQuery.query('#telefonoapoderado')[0].setValue(resultado.data[0].telefono);
                             Ext.ComponentQuery.query('#correoapoderado')[0].setValue(resultado.data[0].correo);
+
+                    
+
 
                             /*if(resultado.data[0].hijos[0]){
                                 me.limpiarHijoGrilla();
@@ -91,7 +94,7 @@ Ext.define('kokojump.view.pdv.PopupApoderadoController', {
 
         }
     },
-
+    
     accionSeleccionarApoderado:function(btn){
         me = this;
         var _idapo = me.lookupReference('txfIdApoderado').getValue();
@@ -140,8 +143,12 @@ Ext.define('kokojump.view.pdv.PopupApoderadoController', {
                 waitMsg: 'Guardando información...',
                 success: function (form, action) {
                     var rsp = kokojump.util.Json.decodeJSON(action.response.responseText);
-                    Ext.ComponentQuery.query('#txtNombrePersona')[0].setValue('Apoderado: '+ nom + ' ' + ape);
-                    Ext.ComponentQuery.query('#txtCodigoPersona')[0].setValue(rsp.error);
+                    //anita2
+                    Ext.ComponentQuery.query('[name=cliente]')[0].setValue(nom + ' ' + ape);
+                    Ext.ComponentQuery.query('[name=idclie]')[0].setValue(rsp.error);
+                 
+                  //  Ext.ComponentQuery.query('#txtNombrePersona')[0].setValue('Apoderado: '+ nom + ' ' + ape);
+                  //  Ext.ComponentQuery.query('#txtCodigoPersona')[0].setValue(rsp.error);
                     Ext.ComponentQuery.query('#wPdvPopupApoderado')[0].close();
                     //var view =  me.getView();
                     //view.close();
