@@ -44,9 +44,12 @@ Ext.define('kokojump.view.pdv.AccionesPago', {
         //}
 
         if (_form.isValid()) {
-
-            papa =Ext.ComponentQuery.query('#txtNombreApoderado')[0].getValue();
-            Ext.ComponentQuery.query('#idper')[0].setValue(papa);
+            try {
+                papa =Ext.ComponentQuery.query('#txtNombreApoderado')[0].getValue();
+                Ext.ComponentQuery.query('#idper')[0].setValue(papa);
+            } catch (error) {
+                Ext.ComponentQuery.query('#idper')[0].setValue(0);   
+            }
             _form.submit({
                 waitMsg: 'Guardando informacion...',
                 success: function (form, action) {

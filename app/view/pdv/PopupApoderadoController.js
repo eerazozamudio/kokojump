@@ -59,8 +59,8 @@ Ext.define('kokojump.view.pdv.PopupApoderadoController', {
                         Ext.ComponentQuery.query('#correoapoderado')[0].setValue('');
 
                         if(resultado.data){ //anita 
-                            Ext.ComponentQuery.query('[name=cliente]')[0].setValue(resultado.data[0].nombres);
-                            Ext.ComponentQuery.query('[name=idclie]')[0].setValue(resultado.data[0].idapo);
+                            Ext.ComponentQuery.query('#nombresapoderado')[0].setValue(resultado.data[0].nombres);
+                            Ext.ComponentQuery.query('#idapoderado')[0].setValue(resultado.data[0].idapo);
                             Ext.ComponentQuery.query('#apellidosapoderado')[0].setValue(resultado.data[0].apellidos);
                             Ext.ComponentQuery.query('#telefonoapoderado')[0].setValue(resultado.data[0].telefono);
                             Ext.ComponentQuery.query('#correoapoderado')[0].setValue(resultado.data[0].correo);
