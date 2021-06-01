@@ -113,6 +113,7 @@ Ext.define('kokojump.view.producto.ProductoController', {
                waitMsg: 'Guardando información...',
                success: function (form, action) {
                    _dgv = Ext.ComponentQuery.query('#dgvProductos')[0];
+                   frm.reset();
                    _dgv.getStore().reload();
               },
                failure: function () {

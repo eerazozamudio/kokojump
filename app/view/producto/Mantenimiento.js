@@ -144,13 +144,8 @@ Ext.define('kokojump.view.producto.Mantenimiento', {
                                     flex: 2,
                                     itemId:'cboCategoria'
 
-                                },
-                                {
-                                  xtype: 'button',
-                                  glyph: kokojump.util.Glyphs.getGlyph('nuevo'),
-                                //  handler: 'onClickNuevoProducto',
-                                  flex: 0.5
                                 }
+                               
                               ]
                             },
                             {
@@ -207,26 +202,7 @@ Ext.define('kokojump.view.producto.Mantenimiento', {
                                     value : true
                                   },
 
-                                  {
-                                    xtype:'checkbox',
-                                    boxLabel : 'Maneja Stock',
-                                    name : 'manejastock',
-                                    reference :'chkManejaStock',
-                                    hidden : true
-                                  },
-
-                                  {
-                                     xtype:'numberfield',
-                                     name : 'stock',
-                                     fieldLabel:'Stock',
-                                     labelAlign:'right',
-                                     flex: 1,
-                                     align:'right',
-                                     value : 0,
-                                     allowNegative: true,
-                                     hideTrigger: true,
-                                     hidden:true
-                                 },
+                                  
 
                                 ]
                             },
@@ -241,6 +217,37 @@ Ext.define('kokojump.view.producto.Mantenimiento', {
                               name : 'contarvisita'
                             },
                             {
+                              xtype:'checkbox',
+                              boxLabel : '* MANEJA STOCK',
+                              name : 'manejastock',
+                              reference :'chkManejaStock',
+                              hidden : false
+                            },
+
+                            {
+                               xtype:'numberfield',
+                               name : 'stock',
+                               fieldLabel:'Stock',
+                               flex: 1,
+                               align:'right',
+                               value : 0,
+                               allowNegative: true,
+                               hideTrigger: true,
+                               hidden:false,
+                               fieldStyle: 'text-align: left;font-size:20px;font-weight:bold; ',
+                           },
+                           {
+                            xtype:'numberfield',
+                            name : 'stockminimo',
+                            fieldLabel:'Stock Minimo',
+                            flex: 1,
+                            value : 0,
+                            allowNegative: true,
+                            hideTrigger: true,
+                            hidden:false,
+                            fieldStyle: 'text-align: left;font-size:20px;font-weight:bold; ',
+                        },
+                            {
 
                                 xtype:'numberfield',
                                 fieldLabel:'Precio Venta',
@@ -251,6 +258,7 @@ Ext.define('kokojump.view.producto.Mantenimiento', {
                                 decimalPrecision:2,
                                 step:'0.1',
                                 value : 0,
+                                fieldStyle: 'text-align: left;font-size:20px;font-weight:bold; ',
                              },
                              {
                                xtype:'container',
@@ -297,7 +305,7 @@ Ext.define('kokojump.view.producto.Mantenimiento', {
                                   reference: 'fotoproducto',
                                   padding: '20 50 20 50',
                                   width: 70,
-                                  height: 300
+                                  height: 180
                              }
 
                         ],

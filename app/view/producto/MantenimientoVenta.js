@@ -26,6 +26,7 @@ Ext.define('kokojump.view.producto.MantenimientoVenta', {
             params : {idlocal  : Ext.util.Cookies.get('idlocal'),idcategoria:6}
        });
         storeCategoria = Ext.create('kokojump.store.Categorias');
+        storePresentacion = Ext.create('kokojump.store.Presentacion');
          Ext.apply(this, {
             items: [{
                     ///title: 'Registros',
@@ -106,7 +107,8 @@ Ext.define('kokojump.view.producto.MantenimientoVenta', {
                         layout: {
                             type: 'vbox',
                             pack: 'start',
-                            align: 'stretch'
+                            align: 'stretch',
+                            padding : 10,
                         },
                         items: [{
                                 xtype: 'hiddenfield',
@@ -131,6 +133,25 @@ Ext.define('kokojump.view.producto.MantenimientoVenta', {
                             },
                             {
                                 xtype: 'label',
+                                text: 'Presentacion del producto'
+                            },
+                            {
+                                xtype: 'combo',
+                                name: 'idpresentacion',
+                                store:storePresentacion,
+                                queryMode: 'local',
+                                displayField: 'descripcion',
+                                valueField: 'idpresentacion',
+                                editable: false,
+                                flex: 2,
+                                itemId:'cboIdPresentacion',
+                                emptyText : '--- SELECCIONAR---',
+                                editable: false
+
+                            },
+                          
+                            {
+                                xtype: 'label',
                                 text: 'Codigo de Barra'
                             },
                            
@@ -140,35 +161,27 @@ Ext.define('kokojump.view.producto.MantenimientoVenta', {
                                 itemId:'codigobarra',
                                 allowBlank: true
                             },
-                            
                             {
-                              xtype:'container',
-                              layout:'hbox',
-                              padding:'5px 5px 5px 5px',
-                              items:[
-                                {
-                                    xtype: 'combo',
-                                    name: 'idcate',
-                                    fieldLabel:'Categoria',
-                                    store:storeCategoria,
-                                    queryMode: 'local',
-                                    displayField: 'descripcion',
-                                    valueField: 'idcate',
-                                    editable: false,
-                                    flex: 2,
-                                    itemId:'cboCategoria',
-                                    value : 6,
-                                    readOnly : true
-
-                                },
-                                {
-                                  xtype: 'button',
-                                  glyph: kokojump.util.Glyphs.getGlyph('nuevo'),
-                                //  handler: 'onClickNuevoProducto',
-                                  flex: 0.5
-                                }
-                              ]
+                                xtype: 'label',
+                                text: 'Categoria'
                             },
+                            {
+                                xtype: 'combo',
+                                name: 'idcate',
+                                //fieldLabel:'Categoria',
+                                store:storeCategoria,
+                                queryMode: 'local',
+                                displayField: 'descripcion',
+                                valueField: 'idcate',
+                                editable: false,
+                                flex: 2,
+                                itemId:'cboCategoria',
+                                value : 6,
+                                readOnly : true
+
+                            },
+                          
+                        
                             {
                              xtype:'container',
                              layout:'hbox',
@@ -196,60 +209,86 @@ Ext.define('kokojump.view.producto.MantenimientoVenta', {
                            },
                            {
 
-                               xtype:'numberfield',
-                               fieldLabel:'Precio Compra',
-                               name : 'preciocompra',
-                               flex: 1,
-                               allowDecimals: true,
-                               decimalSeparator: '.',
-                               decimalPrecision:2,
-                               step:'0.1',
-                               value : 0,
-                               hidden:true
+                            xtype:'numberfield',
+                            fieldLabel:'Precio Compra',
+                            name : 'preciocompra',
+                            flex: 1,
+                            allowDecimals: true,
+                            decimalSeparator: '.',
+                            decimalPrecision:2,
+                            step:'0.1',
+                            value : 0,
+                            hidden:true
 
                             },
                             {
-                                xtype:'container',
-                                layout:'hbox',
-                                flex: 1,
-                                padding : '0 0 5 0',
-                                items:[
-                                  {
-                                    xtype:'checkbox',
-                                    boxLabel : 'LLEVAR CONTROL DE SERVICIO',
-                                    name : 'llevacontrol',
-                                    reference :'llevacontrol',
-                                    hidden:true
-                                  },
-                                  {
-                                    xtype:'checkbox',
-                                    boxLabel : 'Maneja Stock',
-                                    name : 'manejastock',
-                                    reference :'chkManejaStock',
-                                    hidden : true
-                                  },
+                                xtype:'checkbox',
+                                boxLabel : 'LLEVAR CONTROL DE SERVICIO',
+                                name : 'llevacontrol',
+                                reference :'llevacontrol',
+                                hidden:true,
 
+                            },
+                            {
+                                xtype:'checkbox',
+                                boxLabel : 'Maneja Stock',
+                                name : 'manejastock',
+                                reference :'chkManejaStock',
+                                width :50,
+                                value : true
+                               // hidden : true
+                              },
+                            {
+                                xtype:'container',
+                                layout: {
+                                    type : 'hbox',
+                                    align: 'stretch'
+                                },
+                                flex: 1,
+                                items:[
                                   {
                                      xtype:'numberfield',
                                      name : 'stock',
                                      fieldLabel:'Stock',
-                                     labelAlign:'right',
+                                     labelAlign:'left',
                                      flex: 1,
                                      align:'right',
                                      value : 0,
                                      allowNegative: true,
                                      hideTrigger: true,
-                                     hidden:true
+                                     padding : 5,
+                                     //styleField : 'fontSize:20px;'
+                                     fieldStyle: 'text-align: left;font-size:20px;font-weight:bold; ',
+                                    // hidden:true
                                  },
+                                 {
+                                    xtype:'numberfield',
+                                    name : 'stockminimo',
+                                    fieldLabel:'Stock Minimo',
+                                    labelAlign:'right',
+                                    flex: 1,
+                                    align:'right',
+                                    value : 0,
+                                    allowNegative: true,
+                                    hideTrigger: true,
+                                    padding : 5,
+                                    fieldStyle: 'text-align: left;font-size:20px;font-weight:bold; ',
+
+                                },
 
                                 ]
                             },
                             {
+                                xtype: 'label',
+                                text: 'Precio Venta'
+                            },
+                            {
 
                                 xtype:'numberfield',
-                                fieldLabel:'Precio Venta',
+                               // fieldLabel:'Precio Venta',
                                 name : 'precioventa',
-                                flex: 1,
+                               // flex: 1,
+                               fieldStyle: 'text-align: left;font-size:20px;font-weight:bold; ',
                                 allowDecimals: true,
                                 decimalSeparator: '.',
                                 decimalPrecision:2,
@@ -293,7 +332,7 @@ Ext.define('kokojump.view.producto.MantenimientoVenta', {
                              {
                                  xtype      :'filefield',
                                  name       :'fotoproducto',
-                                 buttonText :'Seleccionar Imagen...',
+                                 buttonText :'Foto',
                                  flex       : 1
                              },
                              {
@@ -301,7 +340,7 @@ Ext.define('kokojump.view.producto.MantenimientoVenta', {
                                   reference: 'fotoproducto',
                                   padding: '20 50 20 50',
                                   width: 70,
-                                  height: 300
+                                  height: 200
                              }
 
                         ],

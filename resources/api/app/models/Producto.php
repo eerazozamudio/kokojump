@@ -41,6 +41,13 @@ class Producto extends \Phalcon\Mvc\Model
         $sql     = $obj->executarJson('public','sp_producto_eliminar',$param);
         return $sql;
     }
+    public static function presentacion($ar)
+    {
+        $obj     = new SQLHelpers();
+        $param   = $ar;
+        $sql     = $obj->executarJson('public','sp_producto_presentacion',$param);
+        return $sql;
+    }
 
     
 

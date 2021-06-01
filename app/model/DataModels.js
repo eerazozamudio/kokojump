@@ -42,8 +42,10 @@ Ext.define('kokojump.model.Producto', {
         { name: 'item', type: 'int' },
         { name: 'codigobarra', type: 'string' },
         { name: 'esmembresia', type: 'boolean' },
-        { name: 'contarvisita', type: 'boolean' }
-
+        { name: 'contarvisita', type: 'boolean' },
+        { name: 'stockminimo', type: 'int' },
+        { name: 'manejastock', type: 'boolean' },
+        { name: 'idpresentacion', type: 'int' }
       ]
 });
 
@@ -260,5 +262,15 @@ Ext.define('kokojump.model.Evento', {
         { name: 'direccion', type: 'string' },
         { name: 'estado', type: 'string' }
       ]
+});
+
+
+// @Model : Presentacion
+Ext.define('kokojump.model.Presentacion', {
+  extend: 'Ext.data.Model',
+  fields: [
+      { name: 'idpresentacion', type: 'int' },
+      { name: 'descripcion', type: 'string' }
+    ]
 });
 

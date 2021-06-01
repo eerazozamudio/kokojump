@@ -11,6 +11,7 @@ Ext.define('kokojump.Application', {
         'kokojump.store.Empleados',
         'kokojump.store.Ventas',
         'kokojump.store.Clientes',
+        'kokojump.store.Presentacion'
 
     ],
     views:[

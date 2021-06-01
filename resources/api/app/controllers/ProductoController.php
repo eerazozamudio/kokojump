@@ -108,6 +108,12 @@ class ProductoController extends Controller
            $idlocal       = $request->getPost('idlocal');
            $esmembresia   = ($request->getPost('esmembresia')=='on'?1:0);
            $contarvisita  = ($request->getPost('contarvisita')=='on'?1:0);
+           $stockminimo   = $request->getPost('stockminimo');
+           $manejastock   = ($request->getPost('manejastock')=='on'?1:0);
+
+           $idpresentacion = $request->getPost('idpresentacion');
+           
+
 
            $format       = new FuncionesHelpers();
            $data = array(
@@ -120,9 +126,9 @@ class ProductoController extends Controller
               $format->esNumeroCero($llevacontrol),
               $format->esNumeroCero($stockactual),
               $subioImg,
-              $minutos,$orden,$codigobarra,$idlocal,$esmembresia,$contarvisita
+              $minutos,$orden,$codigobarra,$idlocal,$esmembresia,$contarvisita, $format->esNumeroCero($stockminimo),$manejastock,  $format->esNumeroCero($idpresentacion)
             );
-          // print_r($data);die();
+           //print_r($data);die();
            $jsonData = Producto::actualizar($data);
            $idproducto = $jsonData[0]["error"];
            if($subioImg == 1){
@@ -168,5 +174,17 @@ class ProductoController extends Controller
 
        }
     }
+    public function presentacionAction(){
+     $request        = new Phalcon\Http\Request();
+     $response       = new \Phalcon\Http\Response();
+     if($request->isGet() ==true)
+     {
+          $data      = array();
+          $jsonData  = Producto::presentacion($data);
+          $response->setContentType('application/json', 'UTF-8');
+          $response->setContent($jsonData);
+          return $response;
+     }
+}
 
 }
