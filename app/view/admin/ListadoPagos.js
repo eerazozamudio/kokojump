@@ -30,22 +30,32 @@ Ext.define('kokojump.view.admin.ListadoPagos', {
             handler: 'onClickImprimirTicket'
         },
         {
-            xtype: 'button',
-            text: 'Reporte Todos PDF',
-            handler: 'onClickImprimirPDFVentasDiarias'
+            xtype : 'button',
+            text : 'REPORTES',
+            menu : [
+                {
+                    text : 'Reporte Todos PDF',
+                    handler  : 'onClickImprimirPDFVentasDiarias'
+                },
+                {
+                    text : 'Reporte Ventas PDF',
+                    handler  : 'onClickImprimirPDFVentasTienda'
+                },
+                {
+                    text : 'Reporte Servicio PDF',
+                    handler  : 'onClickImprimirPDFServicios'
+                },
+                {
+                    text : 'Exportar Excel',
+                    handler  : 'onClickImprimirExcelVentasDiarias'
+                },
+                {
+                    text : 'Listado de Niños',
+                    handler  : 'onClickImprimirExcelListadoNinos'
+                },
+               
+            ]
         },
-        {
-            xtype: 'button',
-            text: 'Exportar Excel',
-            handler: 'onClickImprimirExcelVentasDiarias'
-        },
-        {
-            xtype: 'button',
-            text: 'Listado de Niños',
-            handler: 'onClickImprimirExcelListadoNinos'
-        }
-
-
     ],
     initComponent: function () {
 
@@ -162,7 +172,7 @@ Ext.define('kokojump.view.admin.ListadoPagos', {
                                     text: 'Del',
                                     padding: '5px 0 0 0',
                                     border: true,
-                                    width: 25,
+                                    width: 50,
                                     height: 25,
                                     style: {
                                         background: '#6a4b5a',

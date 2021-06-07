@@ -126,3 +126,25 @@ Ext.define('kokojump.store.Eventos', {
         }
     }
 });
+
+/*
+@DataSet :
+Stores para los eventos
+==============================================================
+*/
+Ext.define('kokojump.store.EventosMes', {
+    extend: 'Ext.data.Store',
+    storeId : 'storeEventosMes',
+    requiere:['kokojump.model.DataModels'],
+    model   :'kokojump.model.Evento',
+    autoLoad: false,
+    extraParams : {fecha : null },
+    proxy: {
+        type: 'ajax',
+        api: {read: 'resources/api/evento_listar_mes'},
+        reader: {
+            type: 'json',
+            rootProperty: 'data',
+        }
+    }
+});

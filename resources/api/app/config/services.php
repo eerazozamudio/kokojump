@@ -201,11 +201,15 @@ $di->set('router',function() {
 
     $router->add('/evento_guardar', array('controller'=>'evento','action'=>'guardar'));
     $router->add('/evento_listar', array('controller'=>'evento','action'=>'listar'));
+    $router->add('/evento_listar_mes', array('controller'=>'evento','action'=>'listarmes'));
     $router->add('/pagos_listar', array('controller'=>'evento','action'=>'buscarpagos'));
     $router->add('/contrato', array('controller'=>'impresion','action'=>'imprimircontrato'));
     $router->add('/enviar_correo', array('controller'=>'impresion','action'=>'enviarcorreo'));
     $router->add('/evento_eliminar', array('controller'=>'evento','action'=>'eliminar'));
     $router->add('/pago_anular', array('controller'=>'evento','action'=>'anularpago'));
+    
+    $router->add('/proveedores_listado', array('controller'=>'configuracion','action'=>'listarproveedores'));
+
     
 
     return $router;

@@ -207,20 +207,6 @@ Ext.define('kokojump.view.producto.MantenimientoVenta', {
                                }
                              ]
                            },
-                           {
-
-                            xtype:'numberfield',
-                            fieldLabel:'Precio Compra',
-                            name : 'preciocompra',
-                            flex: 1,
-                            allowDecimals: true,
-                            decimalSeparator: '.',
-                            decimalPrecision:2,
-                            step:'0.1',
-                            value : 0,
-                            hidden:true
-
-                            },
                             {
                                 xtype:'checkbox',
                                 boxLabel : 'LLEVAR CONTROL DE SERVICIO',
@@ -258,7 +244,7 @@ Ext.define('kokojump.view.producto.MantenimientoVenta', {
                                      hideTrigger: true,
                                      padding : 5,
                                      //styleField : 'fontSize:20px;'
-                                     fieldStyle: 'text-align: left;font-size:20px;font-weight:bold; ',
+                                     fieldStyle: 'text-align:center;font-size:20px;font-weight:bold; ',
                                     // hidden:true
                                  },
                                  {
@@ -272,7 +258,7 @@ Ext.define('kokojump.view.producto.MantenimientoVenta', {
                                     allowNegative: true,
                                     hideTrigger: true,
                                     padding : 5,
-                                    fieldStyle: 'text-align: left;font-size:20px;font-weight:bold; ',
+                                    fieldStyle: 'text-align:center;font-size:20px;font-weight:bold; ',
 
                                 },
 
@@ -288,7 +274,22 @@ Ext.define('kokojump.view.producto.MantenimientoVenta', {
                                // fieldLabel:'Precio Venta',
                                 name : 'precioventa',
                                // flex: 1,
-                               fieldStyle: 'text-align: left;font-size:20px;font-weight:bold; ',
+                               fieldStyle: 'text-align:center;font-size:20px;font-weight:bold; ',
+                                allowDecimals: true,
+                                decimalSeparator: '.',
+                                decimalPrecision:2,
+                                step:'0.1',
+                                value : 0,
+                             },
+                             {
+                                xtype: 'label',
+                                text: 'Precio Compra'
+                            },
+                             {
+
+                                xtype:'numberfield',
+                                name : 'preciocompra',
+                                fieldStyle: 'text-align:center;font-size:20px;font-weight:bold; ',
                                 allowDecimals: true,
                                 decimalSeparator: '.',
                                 decimalPrecision:2,
@@ -340,7 +341,7 @@ Ext.define('kokojump.view.producto.MantenimientoVenta', {
                                   reference: 'fotoproducto',
                                   padding: '20 50 20 50',
                                   width: 70,
-                                  height: 200
+                                  height: 150
                              }
 
                         ],

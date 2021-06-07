@@ -123,6 +123,17 @@ Ext.define('kokojump.view.main.Main', {
                   },
                   {
                     flex : 1,
+                    text: 'Compras',
+                    itemId: "wRegCompras",
+                    titulo: "..: Ingresos :..",
+                    margin: '3 3 1 3',
+                    handler: 'onClickOpcionBotonMenu',
+                    textAlign : 'left',
+                    iconCls : 'fa fa-truck fa-2x',
+
+                  },
+                  {
+                    flex : 1,
                     text: 'Gastos',
                     itemId: "wRegGastos",
                     titulo: "Gastos",

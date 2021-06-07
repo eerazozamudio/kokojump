@@ -274,3 +274,29 @@ Ext.define('kokojump.model.Presentacion', {
     ]
 });
 
+// @Model : Detalle de compra
+Ext.define('kokojump.model.Item',{
+  extend: 'Ext.data.Model',
+  fields: [
+      { name: 'idprod', type: 'int' },
+      { name: 'nombre', type: 'string' },
+      { name: 'cantidad', type: 'int' },
+      { name: 'total', type: 'float' },
+    ]
+  }
+);
+
+
+// @Model : Proveedor
+Ext.define('kokojump.model.Proveedor',{
+  extend: 'Ext.data.Model',
+  fields: [
+      { name: 'idprov', type: 'int' },
+      { name: 'razonsocial', type: 'string' },
+      { name: 'telefono', type: 'string' },
+      { name: 'correo', type: 'string' },
+      { name: 'idestado', type: 'int' }
+    ]
+  }
+);
+

@@ -100,6 +100,23 @@ class ConfiguracionController extends Controller
     }
 
 
+    public function listarproveedoresAction()
+    {
+         $request        = new Phalcon\Http\Request();
+         $response       = new \Phalcon\Http\Response();
+         if($request->isGet() ==true)
+         {
+             
+             $format     = new FuncionesHelpers(); 
+             $parametros = array();    
+             $jsonData   = Proveedor::listar($parametros);
+           
+             $response->setContentType('application/json', 'UTF-8');
+             $response->setContent($jsonData);
+             return $response;
+         }
+    }
+
 
 
 }

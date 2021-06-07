@@ -19,6 +19,20 @@ class EventoController extends Controller
               return $response;
          }
     }
+    public function listarmesAction()
+    {
+         $request        = new Phalcon\Http\Request();
+         $response       = new \Phalcon\Http\Response();
+         if($request->isGet() ==true)
+         {
+              $fecha         = $request->get('fecha');
+
+              $jsonData = Evento::listadoMes(array($fecha));
+              $response->setContentType('application/json', 'UTF-8');
+              $response->setContent($jsonData);
+              return $response;
+         }
+    }
     public function guardarAction()
     {
          $request        = new Phalcon\Http\Request();

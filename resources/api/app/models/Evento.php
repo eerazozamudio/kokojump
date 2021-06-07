@@ -12,6 +12,13 @@ class Evento extends \Phalcon\Mvc\Model
         $sql     =  $obj->executarJson('public','sp_eventos_listar',$param);
         return $sql;
     }
+    public static function listadoMes($data)
+    {
+        $obj     = new SQLHelpers();
+        $param   = $data;
+        $sql     =  $obj->executarJson('public','sp_eventos_listar_mes',$param);
+        return $sql;
+    }
     
     public static function actualizar($data)
     {   

@@ -8,7 +8,7 @@ Ext.define('kokojump.view.calendario.Calendario',{
         'kokojump.view.calendario.CalendarioController'
     ],
     layout: {
-        type: 'vbox',
+        type: 'hbox',
         pack: 'start',
         align: 'stretch'
     },
@@ -21,6 +21,7 @@ Ext.define('kokojump.view.calendario.Calendario',{
     initComponent: function () {   
         me = this;
         st = Ext.create('kokojump.store.Eventos');
+        stm = Ext.create('kokojump.store.EventosMes');
         l  = Ext.create('kokojump.store.Locales');
         sp = Ext.create('kokojump.store.Pagos');
         f = new Date();
@@ -29,14 +30,98 @@ Ext.define('kokojump.view.calendario.Calendario',{
                 fecha : f.toLocaleDateString()
             }
         });
+        stm.load({
+            params:{
+                fecha : f.toLocaleDateString()
+            }
+        });
+        
         Ext.apply(this, 
         {
-            items: me.getRenderForm(st,l,sp)        
+            items: [
+                me._panelEventosMes(stm),
+                me._panelIngresoEvento(st,l,sp)
+            ],
+            
         });
         this.callParent();
       },
-        
-      getRenderForm:function(st,l,sp){
+      _panelEventosMes:function(stm){
+          return {
+            xtype : 'panel',
+            title : 'Eventos del mes actual',
+            flex: 1,
+            layout : 'fit',
+            items :[
+                {
+                    xtype:'grid',
+                    reference:'dgvevento_mes',
+                    itemId : 'dgvevento_mes',
+                    store : stm,
+                    columnLines: true,
+                    columns:[
+                        {
+                            text:'Evento',
+                            flex:4,
+                            xtype: 'templatecolumn',
+                            tpl: '</br><b style="color:dimgrey;font-size:15px;padding-top:15px;">{nomevento}</b> ' +
+                            '<div style="color:dimgrey;padding-top:4px;"> Cliente :  {cliente} </div> ' + 
+                            '<div style="color:dimgrey;padding-top:4px;"> Local :  {direccion} </div> ' + 
+                            '<div style="color:dimgrey;padding-top:4px;">Desde : {horainicio} ' +
+                            'Hasta :  {horatermino}</div>' + 
+                            '<div style="color:red;padding-top:4px;">{estado} </div>'
+                            
+                            
+                        },
+                        {
+                            xtype: 'widgetcolumn',
+                            flex: 0.5,
+                            widget: {
+                                xtype: 'button',
+                                flex: 1,
+                                glyph: 0xf02f,
+                                handler: 'onClickImprimirContrato',
+                                tooltip : 'Imprimir contrato del evento'
+                            }
+                        },
+                        /*{
+                            xtype: 'widgetcolumn',
+                            flex: 0.5,
+                            widget: {
+                                xtype: 'button',
+                                flex: 1,
+                                glyph: 0xf003,
+                                handler: 'onClickEMail',
+                                tooltip : 'Enviar el contrato al cliente'
+                            }
+                        }*/
+                    ],
+                    emptyText :'NO HAY EVENTOS REGISTRADOS',
+                    listeners : {
+                        rowclick :'onClickEvento'
+                    }
+                }
+            ]
+          };
+      },
+      _panelIngresoEvento:function(st,l,sp){
+          me = this;
+        return {
+            xtype : 'panel',
+            defaults: {
+                frame: false,
+                bodyPadding: 5
+            },
+            layout: {
+                type: 'vbox',
+                pack: 'start',
+                align: 'stretch'
+            },
+            items : me._getRenderForm(st,l,sp),
+            flex: 3,
+          };
+      },
+      _getRenderForm:function(st,l,sp){
         var rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
             clicksToMoveEditor: 1,
             autoCancel: false

@@ -11,7 +11,9 @@ Ext.define('kokojump.Application', {
         'kokojump.store.Empleados',
         'kokojump.store.Ventas',
         'kokojump.store.Clientes',
-        'kokojump.store.Presentacion'
+        'kokojump.store.Presentacion',
+        'EventosMes',
+        'kokojump.store.Proveedores'
 
     ],
     views:[
@@ -33,7 +35,10 @@ Ext.define('kokojump.Application', {
         'pdv.MainVenta',
         'producto.MantenimientoVenta',
         'calendario.Calendario',
-        'producto.ListServicio'
+        'producto.ListServicio',
+        'kokojump.view.compra.Contenedor',
+        'kokojump.view.compra.Listado',
+        'kokojump.view.compra.Formulario'
 
     ],
      models: [

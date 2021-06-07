@@ -86,3 +86,21 @@ Ext.define('kokojump.store.FormaPagos', {
         }
     }
 });
+
+
+
+
+Ext.define('kokojump.store.DetalleCompra', {
+    extend: 'Ext.data.Store',
+    fields: [
+        {name: "idprod", type:'int' },
+        {name: "nombre", type:'string' },
+        {name: "cantidad", type:'float' },
+        {name: "stock", type:'int' },
+        {name: "preciocompra", type:'string'}, 
+        {name: "total", type:'float' }
+    ],
+    proxy: { 
+        type: 'memory' 
+    }
+});
