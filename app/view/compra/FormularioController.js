@@ -14,6 +14,7 @@ Ext.define('kokojump.view.compra.FormularioController', {
             s.insert(i++,{
                 idprod : record.get("idprod"),
                 nombre : record.get("nombre"),
+                stock : record.get("stock"),
                 cantidad : 1,
                 preciocompra : record.get("preciocompra"),
                 total : record.get("preciocompra") * 1
@@ -49,6 +50,52 @@ Ext.define('kokojump.view.compra.FormularioController', {
         s.remove(record);
         g.getView().refresh();
         this.onCalcularTotalOrdenCompraEditar();
+    },
+    onClickCancelar:function(b){
+        let f = Ext.ComponentQuery.query('#frmCompra')[0];
+        f.reset();
+        let me = Ext.ComponentQuery.query('#contentPanelcompra')[0];
+        let l  = me.getLayout();
+        l.setActiveItem(0);    
+    },
+    onClickGuardar:function (){
+        let store = Ext.ComponentQuery.query('#dgvCompraDet')[0].getStore();
+        let detalle = [];
+        store.each(function(r){
+            i = {
+                "idprod": r.get("idprod"),
+                "stockactual": r.get("stock"),
+                "cantidad": r.get("cantidad"),
+                "precio" : r.get("preciocompra"),
+                "total" : r.get("total")
+            };
+            detalle.push(i);
+
+        });
+
+        Ext.ComponentQuery.query("#jsondetalle")[0].setValue(JSON.stringify(detalle))
+
+        f = Ext.ComponentQuery.query('#frmCompra')[0];
+        if(f.isValid()){
+            f.submit({
+                url : kokojump.util.Rutas.compraGuardar,
+                waitMsg: 'Guardando información ...',
+                success: function (form,action){
+                    Ext.Msg.alert('KokoJump', 'Guardando');
+                    let f = Ext.ComponentQuery.query('#frmCompra')[0];
+                    f.reset();
+                    let me = Ext.ComponentQuery.query('#contentPanelcompra')[0];
+                    let l  = me.getLayout();
+                    l.setActiveItem(0);    
+                },
+                failure: function () {
+                    console.log("ERROR#");
+                }
+
+            });
+        }
+   
+
     }
 
 });

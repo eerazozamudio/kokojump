@@ -1,17 +1,17 @@
 
-Ext.define('kokojump.view.compra.Formulario',{
+Ext.define('kokojump.view.salidainterna.Formulario',{
     extend: 'Ext.panel.Panel',
-    xtype   : 'compraregistro',
+    xtype   : 'salidainternaregistro',
     requires: [
-        'kokojump.view.compra.FormularioController',
-     
+        'kokojump.view.salidainterna.FormularioController',
+        
     ],
-    controller: 'compra-formulario',
+
+    controller: 'salidainterna-formulario',
     layout :{
         type : 'hbox',
         align :'stretch'
     },
-    tiposervicio : 0,
     _detalle:function(me){
         _storeProducto     = Ext.create('kokojump.store.Productos');
         _storeProducto.load({
@@ -29,24 +29,12 @@ Ext.define('kokojump.view.compra.Formulario',{
 
         return  {
             xtype : 'panel',
-            flex : 2,
-            bbar: [
-                '->',
-                {
-                    xtype: 'numberfield',
-                    fieldLabel: '<b><div style="font-size:20px;margin-top:16px;">Total :</div></b>',
-                    itemId: 'txtTotalVenta',
-                    decimalSeparator: '.',
-                    readOnly: true,
-                    fieldStyle: 'text-align: right;font-size:35px;font-weight:bold; ',
-
-                }
-            ],
+            flex : 1,
             items : [
                 {
                    xtype : 'grid',
                    fled : 1,
-                   itemId : "dgvCompraDet",
+                   itemId : "dgvSalidaInterna",
                    store : _storeDetalle,
                    tbar :  [
                        {
@@ -57,7 +45,8 @@ Ext.define('kokojump.view.compra.Formulario',{
                            displayField : 'nombre',
                            valueField : 'idprod', 
                            queryMode : 'local',
-                           editable : false,
+                           editable : true,
+                           minChars : 4,
                            listeners : {
                                select: 'onSelectProducto'
                            }
@@ -98,26 +87,7 @@ Ext.define('kokojump.view.compra.Formulario',{
 
                             }
                        },
-                       {
-                        header : '<div>Precio</div><div>Compra</div>', 
-                        flex: 1,
-                        align : 'right',
-                        dataIndex: 'preciocompra',
-                        editor: {
-                             xtype: 'numberfield',
-                             value: 0,
-                             minValue: 0,
-                             itemId: 'txtPrecioCompra'
-
-                         }
-                    },
-                       {
-                           header : 'Total',
-                           flex: 1,
-                           dataIndex: 'total',
-                           align : 'right',
-
-                       },
+                       
                        {
                         xtype: 'widgetcolumn',
                         width: 50,
@@ -140,7 +110,7 @@ Ext.define('kokojump.view.compra.Formulario',{
         _storeProv     = Ext.create('kokojump.store.Proveedores');
         return   {
             xtype : 'form',
-            itemId : 'frmCompra',
+            itemId : 'frmSalidaInterna',
             flex : 1,
             bodyPadding : 10,
             layout : {
@@ -157,32 +127,32 @@ Ext.define('kokojump.view.compra.Formulario',{
                     },
                     {
                         xtype :'hiddenfield',
-                        itemId : 'idcompra',
+                        itemId : 'idsalidainterna',
                         value : 0,
-                        name : 'idcompra'
+                        name : 'idsalidainterna'
                     },
                     {
                          xtype : 'fieldset',
-                         title : 'Proveedor',
+                         title : 'Detalle de Salida',
                          layout : {
-                            type : 'fit',
+                            type : 'vbox',
                             align : 'stretch'
                         },
                          items :  [
                              {
-                                 xtype : 'combo',
-                                 emptyText : '-- SELECCIONAR PROVEEDOR --',
-                                 flex :1,
+                                 xtype : 'textarea',
+                                 name : 'conceptosalida',
+                                 flex: 1,
                                  padding : '10 5 10 5',
-                                 store : _storeProv,
-                                 valueField : 'idprov',
-                                 displayField : 'razonsocial', 
-                                 queryMode: 'local',
-                                 allowBlank:false,
-                                 name : 'idprov'
-                                 
-
-                             }
+                                 emptyText : 'Concepto de salida'
+                             },
+                             {
+                                xtype : 'textfield',
+                                name : 'persona',
+                                flex: 1,
+                                padding : '10 5 10 5',
+                                emptyText : 'Persona que se entrega'
+                            }
                          ]
 
                     },
@@ -198,18 +168,18 @@ Ext.define('kokojump.view.compra.Formulario',{
                                 allowBlank:false,
                                 name : 'fecha'
                             },
-                            {
+                           /* {
                                 xtype : 'textfield',
                                 fieldLabel: 'Nro Documento',
                                 padding : '10 5 10 5',
                                 allowBlank:false,
                                 name : 'nrodocumento'
-                            }
+                            }*/
                         ]
                     },
                     {
                         xtype : 'button',
-                        text  : 'GUARDAR COMPRA',
+                        text  : 'GUARDAR SALIDA',
                         handler : 'onClickGuardar',
                         
                         padding : '10 5 10 5',

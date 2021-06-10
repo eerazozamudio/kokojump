@@ -59,7 +59,7 @@ Ext.define('kokojump.view.main.Main', {
                   },
                   {
                     flex : 1,
-                    text: 'Nueva Venta',
+                    text: 'Venta Producto',
                     itemId: "wPdvContenedorVenta",
                     titulo: "..: Venta :.." ,
                     margin: '3 3 1 3',
@@ -134,6 +134,17 @@ Ext.define('kokojump.view.main.Main', {
                   },
                   {
                     flex : 1,
+                    text: 'Salidas Internas',
+                    itemId: "wRegSalidaInterna",
+                    titulo: "..: Salidas Internas :..",
+                    margin: '3 3 1 3',
+                    handler: 'onClickOpcionBotonMenu',
+                    textAlign : 'left',
+                    iconCls : 'fa fa-truck fa-2x',
+
+                  },
+                  {
+                    flex : 1,
                     text: 'Gastos',
                     itemId: "wRegGastos",
                     titulo: "Gastos",
@@ -169,6 +180,10 @@ Ext.define('kokojump.view.main.Main', {
         layout:'fit',
           items: [
             {
+              xtype : 'wcalendario',
+              title : 'Calendario de Eventos'
+            }
+           /* {
               title: 'Nosotros',
               bodyPadding:200,
               //layout:'fit',
@@ -193,7 +208,7 @@ Ext.define('kokojump.view.main.Main', {
                   text : 'Telefono : 925 183 347'
                 },
                              ]
-          }  
+            }  */
           ]
       },
       {

@@ -210,6 +210,12 @@ $di->set('router',function() {
     
     $router->add('/proveedores_listado', array('controller'=>'configuracion','action'=>'listarproveedores'));
 
+    /*******
+     * @@Controllador compra
+     */
+
+    $router->add('/compra_guardar', array('controller'=>'compra','action'=>'guardar'));
+    $router->add('/compra_listar', array('controller'=>'compra','action'=>'listar'));
     
 
     return $router;

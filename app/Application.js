@@ -13,7 +13,8 @@ Ext.define('kokojump.Application', {
         'kokojump.store.Clientes',
         'kokojump.store.Presentacion',
         'EventosMes',
-        'kokojump.store.Proveedores'
+        'kokojump.store.Proveedores',
+        'Compras'
 
     ],
     views:[
@@ -38,7 +39,10 @@ Ext.define('kokojump.Application', {
         'producto.ListServicio',
         'kokojump.view.compra.Contenedor',
         'kokojump.view.compra.Listado',
-        'kokojump.view.compra.Formulario'
+        'kokojump.view.compra.Formulario',
+        'kokojump.view.salidainterna.Contenedor',
+        'kokojump.view.salidainterna.Listado',
+        'kokojump.view.salidainterna.Formulario'
 
     ],
      models: [

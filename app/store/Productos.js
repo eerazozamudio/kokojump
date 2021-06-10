@@ -11,6 +11,10 @@ Ext.define('kokojump.store.Productos', {
     requiere:['kokojump.model.DataModels'],
     model   :'kokojump.model.Producto',
     autoLoad: false,
+    sorters: [{
+        property: 'nombre',
+        direction: 'ASC' // or 'ASC'
+    }],
     extraParams : {
         idlocal : 0 ,
         idcategoria : 0 , 

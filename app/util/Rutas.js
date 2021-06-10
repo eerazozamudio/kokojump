@@ -33,7 +33,8 @@ Ext.define('kokojump.util.Rutas',
             enviarContrato   : 'resources/api/enviar_correo',
             eventoEliminar   : 'resources/api/evento_eliminar',
             pagoAnular   : 'resources/api/pago_anular',
-            quitarNino: 'resources/api/quitar_nino'
+            quitarNino: 'resources/api/quitar_nino',
+            compraGuardar: 'resources/api/compra_guardar',
             
             
         

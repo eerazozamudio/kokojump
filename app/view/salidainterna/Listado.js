@@ -1,21 +1,21 @@
 
-Ext.define('kokojump.view.compra.Listado',{
+Ext.define('kokojump.view.salidainterna.Listado',{
     extend: 'Ext.panel.Panel',
-    xtype: 'listadocompras',
-    requires: [
-        'kokojump.view.compra.ListadoController',
-     
-    ],
+    xtype: 'listadosalidasinternas',
 
-    controller: 'compra-listado',
+    requires: [
+        'kokojump.view.salidainterna.ListadoController',
+        
+    ],
     layout: {
         type: 'fit',
         align: 'stretch'
     },
+    controller: 'salidainterna-listado',
     initComponent:function(){
         me = this;
-        let compras = Ext.create('kokojump.store.Compras');
-        compras.load();
+        let compras = ""; //Ext.create('kokojump.store.Compras');
+       // compras.load();
         Ext.apply(me, {
             items:[
                 me._grilla(compras)
@@ -44,7 +44,7 @@ Ext.define('kokojump.view.compra.Listado',{
                     //rowLines: true,
                     //scrollable: false,
                     //sortableColumns :false,
-                    store : compras,
+                  //  store : compras,
                   //  bbar: me._paginacion(),
                     columns: [
                         {

@@ -50,7 +50,7 @@ Ext.define('kokojump.view.calendario.Calendario',{
           return {
             xtype : 'panel',
             title : 'Eventos del mes actual',
-            flex: 1,
+            flex: 1.3,
             layout : 'fit',
             items :[
                 {
@@ -65,8 +65,11 @@ Ext.define('kokojump.view.calendario.Calendario',{
                             flex:4,
                             xtype: 'templatecolumn',
                             tpl: '</br><b style="color:dimgrey;font-size:15px;padding-top:15px;">{nomevento}</b> ' +
+                            '<div style="color:dimgrey;padding-top:4px;"> Fecha :  {fecha} </div> ' + 
                             '<div style="color:dimgrey;padding-top:4px;"> Cliente :  {cliente} </div> ' + 
-                            '<div style="color:dimgrey;padding-top:4px;"> Local :  {direccion} </div> ' + 
+                            '<div style="color:dimgrey;padding-top:4px;">Telefono :  {telefono} </div> ' + 
+                            '<div style="color:dimgrey;padding-top:4px;">Correo : {correo}</div>' + 
+                            '<div style="color:dimgrey;padding-top:4px;">Local :  {direccion} </div> ' + 
                             '<div style="color:dimgrey;padding-top:4px;">Desde : {horainicio} ' +
                             'Hasta :  {horatermino}</div>' + 
                             '<div style="color:red;padding-top:4px;">{estado} </div>'

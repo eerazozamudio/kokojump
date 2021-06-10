@@ -260,7 +260,9 @@ Ext.define('kokojump.model.Evento', {
         { name: 'adelanto4', type: 'string' },
         { name: 'fechaadelanto4', type: 'string' },
         { name: 'direccion', type: 'string' },
-        { name: 'estado', type: 'string' }
+        { name: 'estado', type: 'string' },
+        { name: 'telefono', type: 'string' },
+        { name: 'correo', type: 'string' }
       ]
 });
 
@@ -296,6 +298,21 @@ Ext.define('kokojump.model.Proveedor',{
       { name: 'telefono', type: 'string' },
       { name: 'correo', type: 'string' },
       { name: 'idestado', type: 'int' }
+    ]
+  }
+);
+
+// @Model : Proveedor
+Ext.define('kokojump.model.Compra',{
+  extend: 'Ext.data.Model',
+  fields: [
+      { name: 'idcompra', type: 'int' },
+      { name: 'idprov', type: 'string' },
+      { name: 'razonsocial', type: 'string' },
+      { name: 'fecha', type: 'string' },
+      { name: 'documento', type: 'string' },
+      { name: 'estado', type: 'int' },
+      { name: 'total', type: 'float' },
     ]
   }
 );
